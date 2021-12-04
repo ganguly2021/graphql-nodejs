@@ -7,44 +7,9 @@ const port = process.env.PORT || 5000
 
 const { graphqlHTTP } = require('express-graphql');
 
-let users = [];
-let user = {};
-
 // graphql schema
 const schema = require('./schema');
-const root = {
-  item: () => {
-    return {
-      id: 'XYU2546',
-      text: 'LED TV',
-      timeISO: '15/05/2022',
-      time: 1548754568,
-      title: 'Electronics',
-      deleted: false
-    }
-  },
-  user: () => {
-    return {
-      firstName: 'Jhon',
-      lastName: 'Doe',
-      emails: [
-        { email: 'abc@gmail.com' },
-        { email: 'kbc@yahoo.com' },
-        { email: 'xyz@aol.com' },
-        { email: 'tpb@netflix.com' }
-      ]
-    }
-  },
-  createUser: ({input}) => {
-    user = input
-
-    users = users.concat(user);
-
-    return user
-  },
-
-  users: () => users
-}
+const resolvers = require('./resolvers');
 
 // bodyParser setup
 app.use(express.json());
@@ -53,7 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // set graphql middleware
 app.use('/graphql', graphqlHTTP({
   schema: schema,
-  rootValue: root,
+  rootValue: resolvers,
   graphiql: true
 }));
 

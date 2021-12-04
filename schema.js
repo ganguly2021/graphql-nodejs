@@ -4,7 +4,8 @@ const schema = buildSchema(`
   type Query {
     item: HackerNewsItem
     user: User,
-    users: [User]
+    users: [User],
+    getUser(id: ID): User
   }
 
   type HackerNewsItem {
