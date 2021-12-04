@@ -30,6 +30,16 @@ const schema = buildSchema(`
     email: String!
     age: Int!
     gender: Gender
+    items: [HackerNewsItem]
+  }
+
+  input HackNewsItemInput {
+    id: String
+    text: String
+    timeISO: String
+    time: Int
+    title: String
+    deleted: Boolean
   }
 
   input UserInput {
@@ -39,6 +49,7 @@ const schema = buildSchema(`
     email: String
     age: Int!
     gender: Gender
+    items: [HackNewsItemInput]
   }
 
   type Mutation {
