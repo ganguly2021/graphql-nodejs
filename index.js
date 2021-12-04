@@ -7,6 +7,9 @@ const port = process.env.PORT || 5000
 
 const { graphqlHTTP } = require('express-graphql');
 
+let users = [];
+let user = {};
+
 // graphql schema
 const schema = require('./schema');
 const root = {
@@ -31,7 +34,16 @@ const root = {
         { email: 'tpb@netflix.com' }
       ]
     }
-  }
+  },
+  createUser: ({input}) => {
+    user = input
+
+    users = users.concat(user);
+
+    return user
+  },
+
+  users: () => users
 }
 
 // bodyParser setup
