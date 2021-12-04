@@ -16,12 +16,20 @@ const schema = buildSchema(`
     title: String
     deleted: Boolean
   }
+  
+  enum Gender {
+    MALE
+    FEMALE
+    OTHERS
+  }
 
   type User {
     id: ID
     firstName: String!
     lastName: String!
     email: String!
+    age: Int!
+    gender: Gender
   }
 
   input UserInput {
@@ -29,6 +37,8 @@ const schema = buildSchema(`
     firstName: String!
     lastName: String!
     email: String
+    age: Int!
+    gender: Gender
   }
 
   type Mutation {
