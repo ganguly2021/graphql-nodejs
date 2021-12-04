@@ -2,10 +2,27 @@ const { buildSchema } = require('graphql');
 
 const schema = buildSchema(`
   type Query {
-    hello: String,
-    name: String,
-    email: String,
-    age: Int
+    item: HackerNewsItem
+    user: User
+  }
+
+  type HackerNewsItem {
+    id: String
+    text: String
+    timeISO: String
+    time: Int
+    title: String
+    deleted: Boolean
+  }
+
+  type User {
+    firstName: String!
+    lastName: String!
+    emails: [Email]
+  }
+
+  type Email {
+    email: String!
   }
 `);
 

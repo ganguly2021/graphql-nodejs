@@ -10,7 +10,28 @@ const { graphqlHTTP } = require('express-graphql');
 // graphql schema
 const schema = require('./schema');
 const root = {
-  hello: () => "Hello welcome to graph ql."
+  item: () => {
+    return {
+      id: 'XYU2546',
+      text: 'LED TV',
+      timeISO: '15/05/2022',
+      time: 1548754568,
+      title: 'Electronics',
+      deleted: false
+    }
+  },
+  user: () => {
+    return {
+      firstName: 'Jhon',
+      lastName: 'Doe',
+      emails: [
+        { email: 'abc@gmail.com' },
+        { email: 'kbc@yahoo.com' },
+        { email: 'xyz@aol.com' },
+        { email: 'tpb@netflix.com' }
+      ]
+    }
+  }
 }
 
 // bodyParser setup
@@ -27,10 +48,10 @@ app.use('/graphql', graphqlHTTP({
 
 // default route
 app.get('/', (req, res) => {
- return res.status(200).json({
-   msg: 'Default api route.',
-   status: true
- });
+  return res.status(200).json({
+    msg: 'Default api route.',
+    status: true
+  });
 });
 
 
